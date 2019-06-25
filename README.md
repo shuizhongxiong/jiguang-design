@@ -1,4 +1,4 @@
-# jiguang-design
+# jiguang-design<https://shuizhongxiong.github.io/jiguang-design/dist/>
 
 ## Project setup
 ```
