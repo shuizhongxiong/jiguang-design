@@ -1,0 +1,23 @@
+.clearfloat:after{
+	display:block;
+	clear:both;
+	content:"";
+	visibility:hidden;
+	height:0;
+} 
+.clearfloat{zoom:1} 
+
+.outter-box {
+	width: 100%;
+	.inner-box {
+		margin: 0 auto;
+		max-width: 1200px;
+	}
+}
+
+@media only screen and (max-width: 1280px) {
+	.outter-box {
+		padding-left: 24px!important;
+		padding-right: 24px!important;
+	}
+}
