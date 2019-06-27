@@ -10,6 +10,8 @@ import 'ant-design-vue/dist/antd.css'
 Vue.config.productionTip = false
 Vue.use(Antd)
 
+Vue.prototype.$baseUrl = process.env.BASE_URL
+
 new Vue({
   router,
   store,

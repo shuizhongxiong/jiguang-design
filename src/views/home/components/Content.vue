@@ -207,7 +207,7 @@ export default {
     },
     download (name) {
       const element = document.createElement('a')
-      element.setAttribute('href', `/assets/files/${name}`)
+      element.setAttribute('href', `${this.$baseUrl}static/files/${name}`)
       element.setAttribute('download', name)
       element.style.display = 'none'
       document.body.appendChild(element)
