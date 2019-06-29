@@ -180,7 +180,8 @@ export default {
           ]
         }
       ],
-      elOffsetTopMap: {}
+      elOffsetTopMap: {},
+      timer: null
     }
   },
   mounted () {
@@ -194,13 +195,18 @@ export default {
   },
   methods: {
     handleScroll () {
-      Object.keys(this.elOffsetTopMap).every(d => {
-        if (window.scrollY < this.elOffsetTopMap[d]) {
-          this.$emit('currentAnchor', d)
-          return false
-        }
-        return true
-      })
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        Object.keys(this.elOffsetTopMap).every(d => {
+          if (window.scrollY < this.elOffsetTopMap[d]) {
+            this.$emit('currentAnchor', d)
+            return false
+          }
+          return true
+        })
+      }, 16)
     },
     getUrl (name) {
       return require(`@/assets/images/home/${name}`)
