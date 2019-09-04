@@ -6,7 +6,7 @@
         <div class="section-children">
           <div class="children-item" v-for="child of data.children" :key="child.title">
             <div class="item-title">{{child.title}}</div>
-            <div class="item-icon">
+            <div class="item-icon" :class="child.addIconCls">
               <img :src="getUrl(child.icon)" :alt="child.title" />
             </div>
             <div class="item-btn">
@@ -57,6 +57,7 @@ export default {
             {
               title: '品牌规范书',
               icon: 'keynote.png',
+              addIconCls: { 'no-max-width': true },
               btn: {
                 label: '下载',
                 download: '极光品牌升级VI规范书——基础版.pdf'
@@ -284,6 +285,9 @@ export default {
           color: #1d3051;
         }
         .item-icon {
+          &.no-max-width > img {
+            max-width: none;
+          }
           > img {
             display: block;
             margin: 0 auto;
