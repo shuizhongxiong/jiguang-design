@@ -7,17 +7,15 @@
           <div class="children-item" v-for="child of data.children" :key="child.title">
             <div class="item-title">{{child.title}}</div>
             <div class="item-icon">
-              <img :src="getUrl(child.icon)" :alt="child.title">
+              <img :src="getUrl(child.icon)" :alt="child.title" />
             </div>
             <div class="item-btn">
-              <a
-                v-if="child.btn.link"
-                :href="child.btn.link"
-                target="_blank">{{child.btn.label}}</a>
+              <a v-if="child.btn.link" :href="child.btn.link" target="_blank">{{child.btn.label}}</a>
               <a
                 v-else-if="child.btn.download"
                 href="javascript:void(0);"
-                @click="download(child.btn.download)">{{child.btn.label}}</a>
+                @click="download(child.btn.download)"
+              >{{child.btn.label}}</a>
               <div v-else>{{child.btn.label}}</div>
             </div>
           </div>
@@ -45,25 +43,28 @@ export default {
               icon: 'brand.png',
               btn: {
                 label: '下载',
-                download: 'brand.zip'
+                download: '品牌资源.zip'
               }
-            }, {
+            },
+            {
               title: '标准 PPT',
               icon: 'ppt.png',
               btn: {
                 label: '下载',
-                download: 'ppt.ppt'
+                download: 'ppt模版.zip'
               }
-            }, {
-              title: '标准 Keynote',
+            },
+            {
+              title: '品牌规范书',
               icon: 'keynote.png',
               btn: {
                 label: '下载',
-                download: 'keynote.key'
+                download: '极光品牌升级VI规范书——基础版.pdf'
               }
             }
           ]
-        }, {
+        },
+        {
           title: '字体',
           anchor: 'icon',
           children: [
@@ -80,19 +81,21 @@ export default {
               icon: 'roboto.png',
               btn: {
                 label: '下载',
-                link: 'https://github.com/adobe-fonts/source-han-sans/tree/release'
+                link:
+                  'https://github.com/adobe-fonts/source-han-sans/tree/release'
               }
             },
             {
-              title: '备选字体',
+              title: '品牌字体',
               icon: 'open-sans.png',
               btn: {
                 label: '下载',
-                link: 'https://fonts.google.com/specimen/Open+Sans'
+                link: 'Roboto.zip'
               }
             }
           ]
-        }, {
+        },
+        {
           title: '图库',
           anchor: 'gallery',
           children: [
@@ -121,7 +124,8 @@ export default {
               }
             }
           ]
-        }, {
+        },
+        {
           title: '工具',
           anchor: 'tool',
           children: [
@@ -150,7 +154,8 @@ export default {
               }
             }
           ]
-        }, {
+        },
+        {
           title: '设计',
           anchor: 'design',
           children: [
@@ -248,7 +253,7 @@ export default {
     }
     .section-title {
       font-size: 32px;
-      color: #384E74;
+      color: #384e74;
       text-align: center;
     }
     .section-children {
@@ -267,19 +272,19 @@ export default {
         text-align: center;
         background-color: #fff;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
-        transition: all .3s;
+        transition: all 0.3s;
         &:last-child {
           margin-right: 0;
         }
         &:hover {
-          box-shadow: 0 30px 57px 0 rgba(0,0,0,0.06);
+          box-shadow: 0 30px 57px 0 rgba(0, 0, 0, 0.06);
         }
         .item-title {
           font-size: 22px;
-          color: #1D3051;
+          color: #1d3051;
         }
         .item-icon {
-          >img {
+          > img {
             display: block;
             margin: 0 auto;
             max-width: 128px;
@@ -288,9 +293,9 @@ export default {
         }
         .item-btn {
           font-size: 16px;
-          color: #10973C;
-          >a {
-            color: #10973C;
+          color: #10973c;
+          > a {
+            color: #10973c;
           }
         }
       }

@@ -1,20 +1,21 @@
-const path = require('path')
-
-function resolve (dir) {
-  return path.resolve(__dirname, dir)
-}
+const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
+  devServer: {
+    open: true,
+    host: '0.0.0.0',
+    port: 4000
+  },
   configureWebpack: {
     resolve: {
       alias: {
-        'styles': resolve('src/assets/styles'),
-        'images': resolve('src/assets/images')
+        'styles': '@/assets/styles',
+        'images': '@/assets/images'
       }
     }
   },
   publicPath: process.env.NODE_ENV === 'production'
     ? '/jiguang-design/dist/'
     : '/',
-  productionSourceMap: false
+  productionSourceMap: !isProduction
 }

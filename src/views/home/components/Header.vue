@@ -1,9 +1,9 @@
 <template>
   <div class="header-wrapper">
-    <div class="header-top outter-box">
+    <div class="header-top outter-box" :class="{ 'has-bg': hasBg }">
       <div class="inner-box">
         <div class="top-logo">
-          <img src="~images/logo-white.png" alt="jiguang design">
+          <img src="~images/logo-white.png" alt="jiguang design" />
         </div>
         <div class="top-menu">
           <div
@@ -11,8 +11,8 @@
             v-for="item of menuList"
             :key="item.label"
             :class="{active: activeAnchor === item.anchor}"
-            @click="anchorChange(item.anchor)">{{item.label}}
-          </div>
+            @click="anchorChange(item.anchor)"
+          >{{item.label}}</div>
         </div>
       </div>
     </div>
@@ -38,10 +38,26 @@ export default {
         { label: '工具', anchor: 'tool' },
         { label: '设计', anchor: 'design' }
       ],
-      activeAnchor: 'brand'
+      activeAnchor: 'brand',
+      timer: null,
+      hasBg: false
     }
   },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
+    handleScroll () {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        this.hasBg = window.scrollY >= 256
+      }, 16)
+    },
     anchorChange (anchor) {
       this.activeAnchor = anchor
       this.$emit('anchor', anchor)
@@ -61,12 +77,16 @@ export default {
 .header-wrapper {
   width: 100%;
   height: 320px;
-  background: #05163f url("~images/home/header-bg.png") no-repeat center 0/100% 320px;
+  background: #282f3b url("~images/home/header-bg.png") no-repeat center 0/100%
+    320px;
   .header-top {
     position: fixed;
     top: 0;
     left: 0;
-    background: #05163f;
+    background: transparent;
+    &.has-bg {
+      background: #282f3b;
+    }
     .inner-box {
       display: flex;
       align-items: center;
@@ -75,7 +95,7 @@ export default {
       .top-logo {
         height: 32px;
         width: 32px;
-        >img {
+        > img {
           display: block;
           width: 100%;
         }
@@ -87,7 +107,8 @@ export default {
           font-size: 14px;
           color: #fff;
           cursor: pointer;
-          &:hover, &.active {
+          &:hover,
+          &.active {
             font-weight: bold;
           }
           &:last-child {
@@ -106,7 +127,7 @@ export default {
     }
     .subtitle {
       font-size: 22px;
-      color: rgba(255,255,255,.8)
+      color: rgba(255, 255, 255, 0.8);
     }
   }
 }
