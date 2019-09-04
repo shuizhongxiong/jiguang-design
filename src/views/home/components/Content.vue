@@ -14,7 +14,7 @@
               <a
                 v-else-if="child.btn.download"
                 href="javascript:void(0);"
-                @click="download(child.btn.download)"
+                @click="download(child.btn)"
               >{{child.btn.label}}</a>
               <div v-else>{{child.btn.label}}</div>
             </div>
@@ -217,14 +217,21 @@ export default {
     getUrl (name) {
       return require(`@/assets/images/home/${name}`)
     },
-    download (name) {
+    download (data) {
+      data.label = '下载中...'
+
       const element = document.createElement('a')
-      element.setAttribute('href', `${this.$baseUrl}static/files/${name}`)
-      element.setAttribute('download', name)
+      element.setAttribute(
+        'href',
+        `${this.$baseUrl}static/files/${data.download}`
+      )
+      element.setAttribute('download', data.download)
       element.style.display = 'none'
       document.body.appendChild(element)
       element.click()
       document.body.removeChild(element)
+
+      data.label = '下载'
     }
   },
   watch: {
