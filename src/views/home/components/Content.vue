@@ -90,7 +90,7 @@ export default {
               icon: 'open-sans.png',
               btn: {
                 label: '下载',
-                link: 'Roboto.zip'
+                download: 'Roboto.zip'
               }
             }
           ]
